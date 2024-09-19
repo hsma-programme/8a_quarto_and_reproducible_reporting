@@ -1,0 +1,4 @@
+.~lock
+solutions/
+*.pyc
+.venv/

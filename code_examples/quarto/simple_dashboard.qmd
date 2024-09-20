@@ -1,0 +1,22 @@
+---
+title: "Penguins"
+format:
+    html:
+        toc: true
+        toc_float: true
+---
+
+```{python}
+#| label: library-imports
+
+import pandas as pd
+from palmerpenguins import load_penguins
+
+```
+
+```{python}
+#| label: data-imports
+
+penguins_df = load_penguins()
+
+```

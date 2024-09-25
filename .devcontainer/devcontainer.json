@@ -16,7 +16,8 @@
 				"quarto.quarto",
 				"REditorSupport.r",
                 "ms-python.python",
-                "ms-python.vscode-pylance"
+                "ms-python.vscode-pylance",
+				"MS-vsliveshare.vsliveshare"
 			],
 			"settings": {
 				"r.rterm.option": [

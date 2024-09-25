@@ -2,7 +2,12 @@
 
 At the end of this session, students should be able to:
 
+### RAP
+
 - Describe the key principles of reproducible analytical pipelines
+
+### Quarto
+
 - Produce a report using Python in Quarto, incorporating
     - python code cells producing static charts, interactive charts, maps and data tables
     - expandable boxes
@@ -13,6 +18,10 @@ At the end of this session, students should be able to:
 - Automate the production of several variants of the same report using parameters
 - Set up and populate a Quarto book and explain how this differs from a Quarto report
 - Install and use additional Quarto Extensions
+- Use Quarto Live and explain its benefits and limitations
+
+### Excel from Python
+
 - Use Python and the xlsxwriter package to produce an Excel spreadsheet
 - Enhance Excel sheets produced with xlsxwriter with various features, including
     - text formatting
@@ -20,6 +29,8 @@ At the end of this session, students should be able to:
     - formulas
     - native charts
     - pivot tables
+
+## Datasets
 
 ### Penguins
 
@@ -31,3 +42,7 @@ Data are available by CC-0 license in accordance with the Palmer Station LTER Da
 Imported via the [palmerpenguins](https://github.com/mcnakhaee/palmerpenguins) package, created by [Muhammad Chenariyan Nakhaee](https://github.com/mcnakhaee).
 
 All penguins artwork by @allison_horst
+
+### Additional Datasets
+
+Datasets for exercises 3 and 4 are randomly generated and relate to fictitious health systems.

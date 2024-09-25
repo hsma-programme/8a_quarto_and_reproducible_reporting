@@ -1,0 +1,23 @@
+---
+title: Introduction
+---
+
+The palmer penguins dataset is intended as a replacement for the overused iris dataset.
+
+It comprises a series of measurements of three species of penguins: Adelie, Chinstrap and Gentoo.
+
+![](resources/lter_penguins.png)
+
+## Measurements
+
+## Body Mass (g)
+
+## Bill Measurements
+
+![](resources/culmen_depth.png)
+
+###
+
+
+
+Artwork by @allison_horst

@@ -1,6 +1,25 @@
-# 8A: Reproducible Reporting with Quarto and
+# 8A: Reproducible Reporting with Quarto and xlsxwriter
 
+At the end of this session, students should be able to:
 
+- Describe the key principles of reproducible analytical pipelines
+- Produce a report using Python in Quarto, incorporating
+    - python code cells producing static charts, interactive charts, maps and data tables
+    - expandable boxes
+    - markdown
+    - tabsets
+- Produce a dashboard using Quarto
+- Produce a parameterised report in Quarto
+- Automate the production of several variants of the same report using parameters
+- Set up and populate a Quarto book and explain how this differs from a Quarto report
+- Install and use additional Quarto Extensions
+- Use Python and the xlsxwriter package to produce an Excel spreadsheet
+- Enhance Excel sheets produced with xlsxwriter with various features, including
+    - text formatting
+    - table formatting
+    - formulas
+    - native charts
+    - pivot tables
 
 ### Penguins
 

@@ -4,6 +4,12 @@ format: dashboard
 ---
 
 ```{python}
+#| tags: [parameters]
+
+species="gentoo"
+```
+
+```{python}
 #| label: library-imports
 
 import pandas as pd
@@ -17,6 +23,8 @@ from palmerpenguins import load_penguins
 
 penguins_df = load_penguins()
 ```
+
+
 
 ## Row {height=60%}
 

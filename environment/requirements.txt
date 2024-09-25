@@ -13,3 +13,4 @@ ipython==8.27.0
 openpyxl
 palmerpenguins==0.1.4
 papermill<=2.6.0
+itables>=2.0.0,<=2.2.1

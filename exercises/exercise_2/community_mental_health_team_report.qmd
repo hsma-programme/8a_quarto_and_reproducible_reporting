@@ -1,9 +1,10 @@
 ---
-title: community_mental_health_report
+title: "Community Mental Health Team"
 format:
   html
 execute:
   echo: false
+  self-contained: true
 ---
 
 ```{python}
@@ -26,5 +27,7 @@ df_team_most_recent_month = df_team[df_team['date'] == df_team['date'].max()]
 ## KPI
 
 ```{python}
-show(df_team_most_recent_month.melt(id_vars=["team","date"]))
+show(
+  df_team_most_recent_month.melt(id_vars=["team","date"])[['variable', 'value']]
+  )
 ```

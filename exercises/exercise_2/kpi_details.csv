@@ -1,0 +1,11 @@
+﻿KPI,Format,Details
+KPI 001 - Vacancy Rate,Percentage,The % of budgeted FTE in the team that is currently unfilled by permanent staff
+KPI 002 - Turnover Rate,Percentage,
+KPI 003 - Days Lost to Staff Sickness,Number,"Of the staff roles filled by permanent or seconded staff, what percentage of days they were due to work were not worked due to sickness absence of any kind?"
+KPI 201 - New Referrals in Month,Number,How many new referrals (excluding those being rejected for being inappropriate to the service) were received by the team in the month?
+KPI 202 - Caseload,Number,"How many people were open to the team at the end of the month, with a status of being seen regularly or being actively checked in on by the team following a course of treatment?"
+KPI 203 - Mean Wait in Days for Referrals With First Appointment in Month,Number,"For those patients who had their first appointment in the month, how long had they waited to be seen?"
+KPI 204 - Percentage Rereferred Within 60 Days,Percentage,"Of patients who have been discharged within 60 days or less of the month end, what percentage had a new referral raised with the team? "
+KPI 205 - Number on Waiting List at Month End,Number,How many patients are awaiting assessment with this team? This does not include patients who have been assessed and are waiting for treatment. 
+KPI 206 - Number on Waiting List with Wait over 180 Days,Number,"Of the patients who are awaiting assessment with this team, how many of these patients have waited over 180 days?"
+KPI 301 - Incidents in Month,Number,"How many safety incidents have been recorded in the month? This includes incidents of all severity and encompasses staff incidents, safeguarding incidents, patient harm and data breaches."

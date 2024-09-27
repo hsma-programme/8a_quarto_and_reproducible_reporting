@@ -15,7 +15,6 @@ import pandas as pd
 from palmerpenguins import load_penguins
 import plotly.express as px
 from itables import show
-from great_tables import GT
 ```
 
 ```{python}
@@ -59,8 +58,12 @@ px.bar(
 ```
 
 ```{python}
-pd.DataFrame(penguins_df[['island', 'species']].value_counts())
+show(penguins_df[['island', 'species']].value_counts().reset_index())
 ```
+
+::: {.grid}
+
+::: {.g-col-6}
 
 ```{python}
 
@@ -73,6 +76,10 @@ px.bar(
 
 ```
 
+:::
+
+::: {.g-col-6}
+
 ```{python}
 
 px.bar(
@@ -83,6 +90,10 @@ px.bar(
 )
 
 ```
+
+:::
+
+:::
 
 ## Insights into Penguin Morphology
 
@@ -98,6 +109,8 @@ px.scatter(
 ```
 
 Chinstrap penguins (Pygoscelis antarcticus) exhibit sexual dimorphism in their bill dimensions. Males generally have larger bills than females, with both bill length and bill depth being significantly different between the sexes. This dimorphism is consistent across different populations, with males having bills that are 5.4% to 11.5% larger than females on average.
+
+
 
 ### By Sex
 
@@ -119,6 +132,8 @@ px.scatter(
 Site-specific differences in both bill length and bill depth have been observed across various islands.
 
 These variations suggest that environmental factors or genetic isolation may influence bill morphology in different populations.
+
+:::{.panel-tabset}
 
 ### Biscoe
 
@@ -159,28 +174,6 @@ px.scatter(
 )
 ```
 
-
-## Morphology Summary
-
-```{python}
-penguin_summary_table_morphology = pd.DataFrame(
-    penguins_df.groupby(['species', 'island']).mean(numeric_only=True)
-    )
-
-(
-    GT(penguin_summary_table_morphology)
-    .tab_header(title="Morphology of Penguins of the Palmer Archipelago",
-                subtitle=f"{penguins_df['year'].min()} to {penguins_df['year'].max()}")
-    .fmt_number(columns=["bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g"],
-                decimals=1)
-    .cols_hide(columns="year")
-    .cols_label(
-        bill_length_mm="Bill Length (mm)",
-        bill_depth_mm="Bill Depth (mm)",
-        flipper_length_mm="Flipper Length (mm)",
-        body_mass_g="Body Mass (g)"
-    )
-    )
-```
+:::
 
 ## References

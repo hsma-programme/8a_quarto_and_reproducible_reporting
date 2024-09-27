@@ -1,0 +1,30 @@
+---
+title: community_mental_health_report
+format:
+  html
+execute:
+  echo: false
+---
+
+```{python}
+team = "Timber Hearth"
+```
+
+```{python}
+import pandas as pd
+from itables import show
+```
+
+```{python}
+df = pd.read_csv("kpis_fantasy_land_mhs.csv", parse_dates=True)
+
+df_team = df[df["team"] == team]
+
+df_team_most_recent_month = df_team[df_team['date'] == df_team['date'].max()]
+```
+
+## KPI
+
+```{python}
+show(df_team_most_recent_month.melt(id_vars=["team","date"]))
+```

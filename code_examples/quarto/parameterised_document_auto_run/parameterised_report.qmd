@@ -1,0 +1,121 @@
+---
+title: "Penguins"
+format:
+    html:
+        toc: true
+        embed-resources: true
+        code-fold: true
+---
+
+```{python}
+#| tags: [parameters]
+#| echo: false
+
+species="Gentoo"
+```
+
+```{python}
+#| label: library-imports
+
+import pandas as pd
+from palmerpenguins import load_penguins
+import plotly.express as px
+from itables import show
+from great_tables import GT
+
+penguins_df = load_penguins()
+```
+
+```{python}
+#| label: filter-by-parameter
+#| echo: false
+
+species_df = penguins_df[penguins_df["species"] == species]
+```
+
+# Morphology of Penguins of the Antarctic
+
+![](lter_penguins.png)
+
+## `{python} species` Penguins
+
+`{python} species` penguins are primarily found on the island of `{python} species_df["island"].mode()[0]`.
+
+The average mass of a `{python} species` penguin is `{python} species_df["body_mass_g"].mean().round(1)` grams.
+
+```{python}
+#| echo: false
+#| label: mass-cals
+
+weight_male = species_df[species_df["sex"] == "male"]["body_mass_g"].mean()
+weight_female = species_df[species_df["sex"] == "female"]["body_mass_g"].mean()
+
+weight_difference = abs(weight_male - weight_female)
+
+if weight_male >= weight_female:
+    weight_comparator = 'more'
+else:
+    weight_comparator = 'less'
+```
+
+Male `{python} species` penguins weigh on average `{python} weight_difference.round(1)`g `{python} weight_comparator` than females, with the average weight of a male being `{python} weight_male.round(1)`g and the average weight of a female being `{python} weight_female.round(1)`g.
+
+```{python}
+#| label: show-df
+show(species_df)
+```
+
+:::{.callout-tip collapse="true"}
+### Click here to view an overview of data about all penguins
+
+## Explore the Dataset
+
+::: {.grid}
+
+::: {.g-col-3}
+
+Introducing a groundbreaking new dataset that promises to revolutionize our understanding of Antarctic penguin species: the Palmer Archipelago Penguin Morphology Dataset. For the first time, researchers have compiled comprehensive measurements of Adelie, Chinstrap, and Gentoo penguins, offering unprecedented insights into these charismatic birds of the Southern Ocean.
+
+This novel collection, gathered over three years of meticulous fieldwork from 2007 to 2009, presents a treasure trove of information on penguin physical characteristics. Led by the esteemed Dr. Kristen Gorman and supported by the Palmer Station Long Term Ecological Research Program, this dataset unveils precise measurements of bill dimensions, flipper lengths, and body masses across multiple islands in the Palmer Archipelago.
+
+The full details of the penguin dataset can be found [here](https://allisonhorst.github.io/palmerpenguins/).
+
+:::
+
+::: {.g-col-9}
+
+```{python}
+#| label: bar-1
+px.bar(
+    penguins_df[['island', 'species']].value_counts().reset_index(),
+    x='species',
+    y='count',
+    color='island'
+)
+
+```
+
+```{python}
+#| label: bar-2
+px.bar(
+    penguins_df[['island', 'species']].value_counts().reset_index(),
+    x='island',
+    y='count',
+    color='species'
+)
+
+```
+
+:::
+
+:::
+
+```{python}
+#| label: full-dataframe-display
+show(
+    penguins_df,
+    buttons=["copyHtml5", "csvHtml5", "excelHtml5"],
+    )
+```
+
+:::

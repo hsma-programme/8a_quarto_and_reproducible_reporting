@@ -1,0 +1,174 @@
+---
+title: "Penguins"
+execute:
+  echo: false
+format:
+    html:
+        toc: true
+        embed-resources: true
+---
+
+```{python}
+#| label: library-imports
+
+import pandas as pd
+from palmerpenguins import load_penguins
+import plotly.express as px
+from itables import show
+from great_tables import GT
+```
+
+```{python}
+#| label: data-imports
+
+penguins_df = load_penguins()
+```
+
+```{python}
+#| label: initial-plot
+#| echo: false
+px.scatter(penguins_df.head(), "bill_length_mm", "bill_depth_mm")
+```
+
+# Morphology of Penguins of the Antarctic
+
+## Differences in Penguin Bill Measurement
+
+### By Island
+
+Site-specific differences in both bill length and bill depth have been observed across various islands.
+
+These variations suggest that environmental factors or genetic isolation may influence bill morphology in different populations.
+
+
+
+<!-- :::{.panel-tabset} -->
+
+```{python}
+all_species = penguins_df["species"].unique()
+from IPython.display import HTML, display
+from bs4 import BeautifulSoup as bs
+```
+
+```{python}
+#| output: asis
+for species_i in all_species:
+    print(f"#### {species_i}")
+
+    fig = px.scatter(
+        penguins_df[penguins_df["species"] == species_i],
+        x="bill_length_mm",
+        y="bill_depth_mm",
+        color="island",
+        title=species_i
+    )
+
+    print("\n")
+
+    root = fig.to_html(full_html=False, include_plotlyjs=False)
+    soup = bs(root)
+
+    print(soup.prettify())
+
+    print("\n")
+```
+
+
+
+### By Species
+
+:::{.panel-tabset}
+
+#### Biscoe
+
+```{python}
+#| label: bill-scatterplot-island-biscoe
+
+px.scatter(
+    penguins_df[penguins_df["island"] == "Biscoe"],
+    x="bill_length_mm",
+    y="bill_depth_mm",
+    color="species"
+)
+```
+
+#### Dream
+
+```{python}
+#| label: bill-scatterplot-island-dream
+
+px.scatter(
+    penguins_df[penguins_df["island"] == "Dream"],
+    x="bill_length_mm",
+    y="bill_depth_mm",
+    color="species"
+)
+```
+
+#### Torgersen
+
+```{python}
+#| label: bill-scatterplot-island-torgersen
+
+px.scatter(
+    penguins_df[penguins_df["island"] == "Torgersen"],
+    x="bill_length_mm",
+    y="bill_depth_mm",
+    color="species"
+)
+```
+
+:::
+
+## Morphology Summary
+
+```{python}
+penguin_summary_table_morphology = pd.DataFrame(
+    penguins_df.groupby(['species', 'island']).mean(numeric_only=True)
+    )
+
+(
+    GT(penguin_summary_table_morphology)
+    .tab_header(title="Morphology of Penguins of the Palmer Archipelago",
+                subtitle=f"{penguins_df['year'].min()} to {penguins_df['year'].max()}")
+    .fmt_number(columns=["bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g"],
+                decimals=1)
+    .cols_hide(columns="year")
+    .cols_label(
+        bill_length_mm="Bill Length (mm)",
+        bill_depth_mm="Bill Depth (mm)",
+        flipper_length_mm="Flipper Length (mm)",
+        body_mass_g="Body Mass (g)"
+    )
+    )
+```
+
+## References
+
+### Artwork
+
+Artwork by [@allison_horst](https://allisonhorst.com/)
+
+### Measurements
+
+Gorman KB, Williams TD, Fraser WR (2014) Ecological Sexual Dimorphism and Environmental Variability within a Community of Antarctic Penguins (Genus Pygoscelis). PLoS ONE 9(3): e90081. https://doi.org/10.1371/journal.pone.0090081
+
+Adélie penguins:
+
+Palmer Station Antarctica LTER and K. Gorman, 2020. Structural size measurements and isotopic signatures of foraging among adult male and female Adélie penguins (Pygoscelis adeliae) nesting along the Palmer Archipelago near Palmer Station, 2007-2009 ver 5. Environmental Data Initiative. https://doi.org/10.6073/pasta/98b16d7d563f265cb52372c8ca99e60f (Accessed 2020-06-08).
+
+Gentoo penguins:
+
+Palmer Station Antarctica LTER and K. Gorman, 2020. Structural size measurements and isotopic signatures of foraging among adult male and female Gentoo penguin (Pygoscelis papua) nesting along the Palmer Archipelago near Palmer Station, 2007-2009 ver 5. Environmental Data Initiative. https://doi.org/10.6073/pasta/7fca67fb28d56ee2ffa3d9370ebda689 (Accessed 2020-06-08).
+
+Chinstrap penguins:
+
+Palmer Station Antarctica LTER and K. Gorman, 2020. Structural size measurements and isotopic signatures of foraging among adult male and female Chinstrap penguin (Pygoscelis antarcticus) nesting along the Palmer Archipelago near Palmer Station, 2007-2009 ver 6. Environmental Data Initiative. https://doi.org/10.6073/pasta/c14dfcfada8ea13a17536e73eb6fbe9e (Accessed 2020-06-08).
+
+### Cleaned Dataset
+
+[Muhammad Chenariyan Nakhaee](https://github.com/mcnakhaee/palmerpenguins)
+
+### Text
+
+Text generated via [Perplexity AI](https://www.perplexity.ai/), with citations included where relevant.

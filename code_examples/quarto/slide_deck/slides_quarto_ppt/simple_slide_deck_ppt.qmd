@@ -1,0 +1,168 @@
+---
+title: "Penguins"
+execute:
+    echo: false
+format: pptx
+---
+
+```{python}
+#| label: library-imports
+
+import pandas as pd
+from palmerpenguins import load_penguins
+import seaborn as sns
+from itables import show
+from great_tables import GT
+
+penguins_df = load_penguins()
+```
+
+## Morphology of Penguins of the Antarctic
+
+[![](lter_penguins.png)](https://allisonhorst.github.io/palmerpenguins/)
+
+Introducing a groundbreaking new dataset that promises to revolutionize our understanding of Antarctic penguin species: the Palmer Archipelago Penguin Morphology Dataset. For the first time, researchers have compiled comprehensive measurements of Adelie, Chinstrap, and Gentoo penguins, offering unprecedented insights into these charismatic birds of the Southern Ocean.
+
+This novel collection, gathered over three years of meticulous fieldwork from 2007 to 2009, presents a treasure trove of information on penguin physical characteristics. Led by the esteemed Dr. Kristen Gorman and supported by the Palmer Station Long Term Ecological Research Program, this dataset unveils precise measurements of bill dimensions, flipper lengths, and body masses across multiple islands in the Palmer Archipelago.
+
+The full details of the penguin dataset can be found [here](https://allisonhorst.github.io/palmerpenguins/).
+
+## Facts About Penguins
+
+- They're black and white
+- They swim
+- They're cute and cuddly
+
+## What's the best thing about penguins?
+
+1. Their smile
+2. Their amazing feathers
+3. Their sense of humour
+
+# Exploring the Dataset
+
+## Counts Per Species
+
+```{python}
+
+sns.barplot(
+    penguins_df['species'].value_counts()
+)
+
+```
+
+## Counts Per Island
+
+```{python}
+
+sns.barplot(
+    penguins_df['island'].value_counts()
+)
+
+```
+
+## Counts by Species
+
+### Breakdown by Island
+
+
+```{python}
+
+sns.barplot(
+    penguins_df[['island', 'species']].value_counts().reset_index(),
+    x='species',
+    y='count',
+    hue='island'
+)
+
+```
+
+## Counts by Island
+
+### Breakdown by Species
+
+```{python}
+
+sns.barplot(
+    penguins_df[['island', 'species']].value_counts().reset_index(),
+    x='island',
+    y='count',
+    hue='species'
+)
+
+```
+
+# Differences in Penguin Bill Measurement By Island
+
+Site-specific differences in both bill length and bill depth have been observed across various islands.
+
+These variations suggest that environmental factors or genetic isolation may influence bill morphology in different populations.
+
+## Biscoe
+
+```{python}
+#| label: bill-scatterplot-island-biscoe
+
+sns.scatterplot(
+    penguins_df[penguins_df["island"] == "Biscoe"],
+    x="bill_length_mm",
+    y="bill_depth_mm",
+    hue="species"
+)
+```
+
+## Dream
+
+```{python}
+#| label: bill-scatterplot-island-dream
+
+sns.scatterplot(
+    penguins_df[penguins_df["island"] == "Dream"],
+    x="bill_length_mm",
+    y="bill_depth_mm",
+    hue="species"
+)
+```
+
+## Torgersen
+
+```{python}
+#| label: bill-scatterplot-island-torgersen
+
+sns.scatterplot(
+    penguins_df[penguins_df["island"] == "Torgersen"],
+    x="bill_length_mm",
+    y="bill_depth_mm",
+    hue="species"
+)
+```
+
+
+## Morphology Summary
+
+```{python}
+penguin_summary_table_morphology = pd.DataFrame(
+    penguins_df.groupby(['species', 'island']).mean(numeric_only=True)
+    )
+
+(
+    GT(penguin_summary_table_morphology)
+    .tab_header(title="Morphology of Penguins of the Palmer Archipelago",
+                subtitle=f"{penguins_df['year'].min()} to {penguins_df['year'].max()}")
+    .fmt_number(columns=["bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g"],
+                decimals=1)
+    .cols_hide(columns="year")
+    .cols_label(
+        bill_length_mm="Bill Length (mm)",
+        bill_depth_mm="Bill Depth (mm)",
+        flipper_length_mm="Flipper Length (mm)",
+        body_mass_g="Body Mass (g)"
+    )
+    )
+```
+
+## Conclusion
+
+Penguins are awesome!
+
+{{< video https://www.youtube.com/watch?v=-GnLDJAgrws width="700" height="500" >}}

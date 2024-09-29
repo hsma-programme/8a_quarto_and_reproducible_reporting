@@ -10,7 +10,7 @@ hsma_store_items_df = pd.DataFrame([
     {"Item": "Find the Future in You Logo Sticker", "Category": "Stickers", "Units": 1000, "Unit Cost": 0.10},
     ])
 
-with pd.ExcelWriter("pivot.xlsx", engine="xlsxwriter") as writer:
+with pd.ExcelWriter("7_pivot.xlsx", engine="xlsxwriter") as writer:
 
     hsma_store_items_df.to_excel(writer, sheet_name="HSMA Store",
                                 index=False, startrow=1, header=False)
@@ -92,9 +92,12 @@ with pd.ExcelWriter("pivot.xlsx", engine="xlsxwriter") as writer:
 
     bold = workbook.add_format({"bold": True})
 
-    worksheet.write(start_position, 0, "Stock Value Summary", bold)
+    worksheet.write(start_position, 0, "Category", bold)
 
-    worksheet.write(start_position, 1, "Category", bold)
+    worksheet.write(start_position, 1, "Stock Value Summary", bold)
+
+    worksheet.write(start_position, 2, "Products in Category", bold)
+
 
     for i, category in enumerate(hsma_store_items_df["Category"].unique()):
         worksheet.write(
@@ -109,6 +112,14 @@ with pd.ExcelWriter("pivot.xlsx", engine="xlsxwriter") as writer:
             start_position+1+i,
             1,
             formula_sumif
+            )
+
+        formula_countif = f'=COUNTIF(B2:B{len(hsma_store_items_df)+1}, "{category}")'
+
+        worksheet.write_formula(
+            start_position+1+i,
+            2,
+            formula_countif
             )
 
 

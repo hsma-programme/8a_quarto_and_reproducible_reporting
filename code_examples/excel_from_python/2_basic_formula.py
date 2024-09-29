@@ -1,7 +1,7 @@
 import xlsxwriter
 
 # Create an new Excel file
-workbook = xlsxwriter.Workbook("basic_formula.xlsx")
+workbook = xlsxwriter.Workbook("2_basic_formula.xlsx")
 # Add a worksheet
 worksheet = workbook.add_worksheet("HSMA Store")
 

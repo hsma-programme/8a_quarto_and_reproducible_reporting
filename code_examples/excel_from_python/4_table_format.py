@@ -7,7 +7,7 @@ hsma_store_items_df = pd.DataFrame([
     {"Item": "HSMA Cat Bowls", "Units": 10, "Unit Cost": 15}
     ])
 
-with pd.ExcelWriter("table_format.xlsx", engine="xlsxwriter") as writer:
+with pd.ExcelWriter("4_table_format.xlsx", engine="xlsxwriter") as writer:
 
     hsma_store_items_df.to_excel(writer, sheet_name="HSMA Store",
                                 index=False, startrow=1, header=False)

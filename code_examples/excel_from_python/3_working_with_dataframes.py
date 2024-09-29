@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Create an new Excel file
-writer = pd.ExcelWriter("working_with_dataframes.xlsx", engine="xlsxwriter") ## NEW
+writer = pd.ExcelWriter("3_working_with_dataframes.xlsx", engine="xlsxwriter") ## NEW
 
 # # Add a bold format
 # bold = workbook.add_format({"bold": True})

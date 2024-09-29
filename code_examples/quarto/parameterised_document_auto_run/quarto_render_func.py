@@ -103,7 +103,7 @@ def render_quarto(
       for key, value in param.items():
         param = key
         param_value = value
-      args.append(f"-P {param}:{param_value}")
+      args.append(f'-P {param}:"{param_value}"')
 
   # run process
   try:

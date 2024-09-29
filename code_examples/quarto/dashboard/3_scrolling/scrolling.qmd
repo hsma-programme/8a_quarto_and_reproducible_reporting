@@ -1,0 +1,75 @@
+---
+title: "Penguins"
+execute:
+  echo: false
+format:
+    dashboard:
+        embed-resources: true
+        scrolling: true
+---
+
+```{python}
+#| label: library-imports
+
+import pandas as pd
+from palmerpenguins import load_penguins
+import plotly.express as px
+from itables import show
+from great_tables import GT
+```
+
+```{python}
+#| label: data-imports
+
+penguins_df = load_penguins()
+```
+
+# Dataset Overview
+
+## Row
+
+![](lter_penguins.png){width=50%}
+
+Introducing a groundbreaking new dataset that promises to revolutionize our understanding of Antarctic penguin species: the Palmer Archipelago Penguin Morphology Dataset. For the first time, researchers have compiled comprehensive measurements of Adelie, Chinstrap, and Gentoo penguins, offering unprecedented insights into these charismatic birds of the Southern Ocean.
+
+This novel collection, gathered over three years of meticulous fieldwork from 2007 to 2009, presents a treasure trove of information on penguin physical characteristics. Led by the esteemed Dr. Kristen Gorman and supported by the Palmer Station Long Term Ecological Research Program, this dataset unveils precise measurements of bill dimensions, flipper lengths, and body masses across multiple islands in the Palmer Archipelago.
+
+The full details of the penguin dataset can be found [here](https://allisonhorst.github.io/palmerpenguins/).
+
+## Row {height=600}
+
+### Column 1
+
+```{python}
+px.bar(
+    penguins_df[['island', 'species']].value_counts().reset_index(),
+    x='species',
+    y='count',
+    color='island',
+    title="Penguin Species - by Island",
+    height=500)
+
+```
+
+### Column 2
+
+```{python}
+px.bar(
+    penguins_df[['island', 'species']].value_counts().reset_index(),
+    x='island',
+    y='count',
+    color='species',
+    title="Islands - Penguin Species Counts",
+    height=500)
+
+```
+
+## Dataset Explorer {height=800}
+
+```{python}
+#| label: full-dataframe-display
+show(
+    penguins_df,
+    buttons=["copyHtml5", "csvHtml5", "excelHtml5"],
+    )
+```

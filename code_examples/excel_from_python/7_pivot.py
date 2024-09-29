@@ -90,13 +90,15 @@ with pd.ExcelWriter("pivot.xlsx", engine="xlsxwriter") as writer:
 
     start_position = len(hsma_store_items_df) + 5
 
-    worksheet.write(start_position, 0, "Stock Value Summary")
+    bold = workbook.add_format({"bold": True})
 
-    worksheet.write(start_position, 1, "Category")
+    worksheet.write(start_position, 0, "Stock Value Summary", bold)
+
+    worksheet.write(start_position, 1, "Category", bold)
 
     for i, category in enumerate(hsma_store_items_df["Category"].unique()):
         worksheet.write(
-            start_position+2+i,
+            start_position+1+i,
             0,
             category
             )
@@ -104,7 +106,11 @@ with pd.ExcelWriter("pivot.xlsx", engine="xlsxwriter") as writer:
         formula_sumif = f'=SUMIF(B2:B{len(hsma_store_items_df)+1}, "{category}", E2:E{len(hsma_store_items_df)+1})'
 
         worksheet.write_formula(
-            start_position+2+i,
+            start_position+1+i,
             1,
             formula_sumif
             )
+
+
+    # Autofit
+    worksheet.autofit()

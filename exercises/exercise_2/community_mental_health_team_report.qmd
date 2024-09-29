@@ -1,15 +1,20 @@
 ---
-title: "Community Mental Health Team"
+title: Monthly KPI Report
 format:
   html:
     self-contained: true
+    toc: true
 execute:
   echo: false
-
 ---
 
 ```{python}
 team = "Timber Hearth"
+```
+
+```{python}
+#| output: asis
+print(f"# {team} Community Mental Health Team")
 ```
 
 ```{python}

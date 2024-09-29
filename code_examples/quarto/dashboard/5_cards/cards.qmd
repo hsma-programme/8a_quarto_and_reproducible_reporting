@@ -1,0 +1,62 @@
+---
+title: "Penguins"
+execute:
+  echo: false
+format:
+    dashboard:
+        embed-resources: true
+---
+
+```{python}
+#| label: library-imports
+
+import pandas as pd
+from palmerpenguins import load_penguins
+import plotly.express as px
+from itables import show
+from great_tables import GT
+```
+
+```{python}
+#| label: data-imports
+
+penguins_df = load_penguins()
+```
+
+::: {.card title="Introduction"}
+Introducing a groundbreaking new dataset that promises to revolutionize our understanding of Antarctic penguin species: the Palmer Archipelago Penguin Morphology Dataset. For the first time, researchers have compiled comprehensive measurements of Adelie, Chinstrap, and Gentoo penguins, offering unprecedented insights into these charismatic birds of the Southern Ocean.
+
+The full details of the penguin dataset can be found [here](https://allisonhorst.github.io/palmerpenguins/)
+:::
+
+## Row
+
+### Column 1
+
+```{python}
+#| title: Penguin Species - by Island
+#| padding: 10px
+px.bar(
+    penguins_df[['island', 'species']].value_counts().reset_index(),
+    x='species',
+    y='count',
+    color='island')
+
+```
+
+### Column 2
+
+```{python}
+#| title: Islands - Penguin Species Counts
+#| padding: 10px
+px.bar(
+    penguins_df[['island', 'species']].value_counts().reset_index(),
+    x='island',
+    y='count',
+    color='species')
+
+```
+
+::: {.card height=50}
+Penguins are Everywhere!
+:::

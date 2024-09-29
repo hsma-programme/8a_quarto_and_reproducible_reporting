@@ -7,9 +7,15 @@ penguins_df = pd.read_csv("penguins_df.csv")
 penguin_species = penguins_df['species'].unique()
 
 for species in penguin_species:
+    print(f"""
+###########################################
+# Generating report for {species}
+###########################################
+          """)
+
     render_quarto(
         input="parameterised_report.qmd",
-        output_file=f"{species}_report_automated.html",
+        output_file=f"{species.replace(' ', '_').replace('-', '_')}_dashboard.html",
         params=[{'species':species}],
         print_command=True,
         verbose=True

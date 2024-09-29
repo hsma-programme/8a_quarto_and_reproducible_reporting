@@ -1,5 +1,4 @@
 ---
-title: Monthly KPI Report
 format:
   html:
     self-contained: true
@@ -14,7 +13,12 @@ team = "Timber Hearth"
 
 ```{python}
 #| output: asis
-print(f"# {team} Community Mental Health Team")
+print(f"""
+---
+title: {team} CMHT KPIs
+---
+"""
+)
 ```
 
 ```{python}
@@ -48,8 +52,11 @@ kpi_most_recent["Formatted Value"] = (kpi_most_recent
   .apply(lambda x: f"{x.value*100}%" if x["Format"]=="Percentage" else x.value, axis=1)
   )
 
+def get_kpi_value(kpi):
+  return kpi_most_recent[kpi_most_recent['variable'] == kpi]['Formatted Value'].iloc[0]
+
 def get_kpi_month(kpi):
-  return f"Value for {most_recent_month_string}: {kpi_most_recent[kpi_most_recent['variable'] == kpi]['Formatted Value'].iloc[0]}"
+  return f"Value for {most_recent_month_string}: {get_kpi_value(kpi)}"
 
 def kpi_line_chart(kpi):
 
@@ -62,7 +69,7 @@ def kpi_line_chart(kpi):
     df_team, x="date", y=kpi,
     markers=True,
     title=title,
-    labels={"date": "Date"}
+    labels={"date": "Date", kpi: "Value"}
     )
 
   if kpi_most_recent[kpi_most_recent["variable"] == kpi]["Format"].iloc[0] == "Percentage":
@@ -91,6 +98,8 @@ def kpi_line_chart(kpi):
 
   return fig
 ```
+
+# KPIs
 
 ## Staffing KPIs
 

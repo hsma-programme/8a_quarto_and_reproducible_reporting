@@ -1,10 +1,11 @@
 ---
 title: "Community Mental Health Team"
 format:
-  html
+  html:
+    self-contained: true
 execute:
   echo: false
-  self-contained: true
+
 ---
 
 ```{python}

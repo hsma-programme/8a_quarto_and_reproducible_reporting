@@ -28,7 +28,6 @@ with pd.ExcelWriter("formula_with_tables.xlsx", engine="xlsxwriter") as writer:
 
     # Add the formula for each row in the Total column
     for row in range(1, max_row+1):
-        # worksheet.write_formula(row, 3, '=[@Units]*[@[Unit Cost]]')
         formula = f'=B{row+1}*C{row+1}'
         worksheet.write_formula(row, max_col, formula)
 

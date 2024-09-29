@@ -1,8 +1,9 @@
 from quarto_render_func import render_quarto
 import pandas as pd
-from palmerpenguins import load_penguins
+import os
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-penguins_df = load_penguins()
+penguins_df = pd.read_csv("penguins_df.csv")
 penguin_species = penguins_df['species'].unique()
 
 for species in penguin_species:

@@ -1,0 +1,12 @@
+{
+  "hash": "77a415ce5543590ae0ef5988525a08b2",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: Penguins Data Explorer\nformat: live-html\npyodide:\n  packages:\n    - pandas\n    - seaborn\n    - nbformat\n    - itables\nresources:\n  - data\n---\n\n# Penguin\n\n\n```{pyodide}\n#| edit: false\n#| autorun: true\n#| runbutton: false\n#| output: false\n#| echo: false\nimport pandas as pd\nimport matplotlib.pyplot as plt\nfrom itables import show\nimport seaborn as sns\n\npenguins = pd.read_csv(\"data/penguins_df.csv\")\n\n```\n\n\n:::{.callout-note collapse=\"true\"}\n### Click here to view the full dataset\n\n\n```{pyodide}\n#| autorun: true\n#| runbutton: false\n#| echo: false\nshow(penguins)\n```\n\n\n:::\n\n## Filter data by species\n\n\n```{ojs}\n//| echo: false\n\nviewof sp = Inputs.radio(\n  [\"Adelie\", \"Gentoo\", \"Chinstrap\"],\n  {\n    value: \"Adelie\",\n    label: \"Species:\",\n  }\n);\n\n```\n\n```{pyodide}\n#| input:\n#|   - sp\n\nfiltered_df_species = penguins[penguins['species'] == sp]\n\nax = sns.scatterplot(\n    filtered_df_species,\n    x=\"bill_length_mm\",\n    y=\"bill_depth_mm\",\n    hue=\"sex\"\n)\n\nax.set_title(sp)\n\nplt.show()\n```\n\n```{pyodide}\n#| autorun: true\n#| runbutton: false\n#| echo: false\n#| input:\n#|   - sp\n\nfiltered_df_species = penguins[penguins['species'] == sp]\n\nshow(filtered_df_species)\n```\n\n\n\n\n<!--\naxis_options = ['bill_length_mm', 'bill_depth_mm',\n       'flipper_length_mm', 'body_mass_g']\n\nwith app_column_2:\n    time.sleep(3)\n    col_1 = st.selectbox(\"Select the column to use for the x axis\", axis_options)\n    axis_options.remove(col_1)\n    col_2 = st.selectbox(\"Select the column to use for the y axis\", axis_options)\n\n    color_factor = st.selectbox(\"Select the column to colour the chart by\",\n    [\"species\", \"sex\", \"island\"])\n\n    fig = px.scatter(penguins, x=col_1, y=col_2, color=color_factor,\n    title=f\"Penguins Dataset - {col_1} vs {col_2}, coloured by {color_factor}\")\n\n    st.plotly_chart(fig) -->\n\n",
+    "supporting": [
+      "interactive_report_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

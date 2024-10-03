@@ -17,7 +17,8 @@
 				"REditorSupport.r",
                 "ms-python.python",
                 "ms-python.vscode-pylance",
-				"MS-vsliveshare.vsliveshare"
+				"MS-vsliveshare.vsliveshare",
+				"ms-toolsai.jupyter"
 			],
 			"settings": {
 				"r.rterm.option": [

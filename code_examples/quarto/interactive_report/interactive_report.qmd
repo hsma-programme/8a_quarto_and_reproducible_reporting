@@ -1,0 +1,106 @@
+---
+title: Penguins Data Explorer
+format: live-html
+pyodide:
+  packages:
+    - pandas
+    - seaborn
+    - nbformat
+    - itables
+resources:
+  - data
+---
+
+# Penguin
+
+```{pyodide}
+#| edit: false
+#| autorun: true
+#| runbutton: false
+#| output: false
+#| echo: false
+import pandas as pd
+import matplotlib.pyplot as plt
+from itables import show
+import seaborn as sns
+
+penguins = pd.read_csv("data/penguins_df.csv")
+
+```
+
+:::{.callout-note collapse="true"}
+### Click here to view the full dataset
+
+```{pyodide}
+#| autorun: true
+#| runbutton: false
+#| echo: false
+show(penguins)
+```
+
+:::
+
+## Filter data by species
+
+```{ojs}
+//| echo: false
+
+viewof sp = Inputs.radio(
+  ["Adelie", "Gentoo", "Chinstrap"],
+  {
+    value: "Adelie",
+    label: "Species:",
+  }
+);
+
+```
+
+```{pyodide}
+#| input:
+#|   - sp
+
+filtered_df_species = penguins[penguins['species'] == sp]
+
+ax = sns.scatterplot(
+    filtered_df_species,
+    x="bill_length_mm",
+    y="bill_depth_mm",
+    hue="sex"
+)
+
+ax.set_title(sp)
+
+plt.show()
+```
+
+```{pyodide}
+#| autorun: true
+#| runbutton: false
+#| echo: false
+#| input:
+#|   - sp
+
+filtered_df_species = penguins[penguins['species'] == sp]
+
+show(filtered_df_species)
+```
+
+
+
+<!--
+axis_options = ['bill_length_mm', 'bill_depth_mm',
+       'flipper_length_mm', 'body_mass_g']
+
+with app_column_2:
+    time.sleep(3)
+    col_1 = st.selectbox("Select the column to use for the x axis", axis_options)
+    axis_options.remove(col_1)
+    col_2 = st.selectbox("Select the column to use for the y axis", axis_options)
+
+    color_factor = st.selectbox("Select the column to colour the chart by",
+    ["species", "sex", "island"])
+
+    fig = px.scatter(penguins, x=col_1, y=col_2, color=color_factor,
+    title=f"Penguins Dataset - {col_1} vs {col_2}, coloured by {color_factor}")
+
+    st.plotly_chart(fig) -->

@@ -2,7 +2,11 @@
 title: "Penguins"
 execute:
   echo: false
-format: pdf
+format:
+  docx:
+    toc: true
+    number-sections: true
+    highlight-style: github
 ---
 
 ```{python}

@@ -21,5 +21,6 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
         output_file=## YOUR CODE HERE,
         params=## YOUR CODE HERE,
         print_command=True,
-        verbose=True
+        verbose=True,
+        shell=True
         )

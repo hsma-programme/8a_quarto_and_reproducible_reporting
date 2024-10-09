@@ -18,5 +18,6 @@ for species in penguin_species:
         output_file=f"{species.replace(' ', '_').replace('-', '_')}_dashboard.html",
         params=[{'species':species}],
         print_command=True,
-        verbose=True
+        verbose=True,
+        shell=True
         )

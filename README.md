@@ -45,4 +45,4 @@ All penguins artwork by @allison_horst
 
 ### Additional Datasets
 
-Datasets for exercises 3 and 4 are randomly generated and relate to fictitious health systems.
+Datasets for exercises 2 and 3 are randomly generated and relate to fictitious health systems.

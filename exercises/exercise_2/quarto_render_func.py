@@ -1,5 +1,3 @@
-
-
 # Modified from https://github.com/quarto-dev/quarto-python/tree/main to allow additional params
 # and add in additional logging
 
@@ -41,7 +39,8 @@ def render_quarto(
     pandoc_args = None,
     print_command=False,
     verbose=True,
-    find_quarto=False
+    find_quarto=False,
+    **kwargs
     ):
 
   # params file to remove after render (if option enabled)
@@ -113,12 +112,14 @@ def render_quarto(
     if find_quarto:
       print("Looking for Quarto")
       final_command = [find_quarto()] + args
-      process = subprocess.Popen(final_command)
+      if print_command:
+        print(f"Final command: {' '.join(final_command)}")
+      process = subprocess.Popen(final_command, **kwargs)
     else:
       final_command = ["quarto"] + args
-      process = subprocess.Popen(' '.join(final_command))
-    if print_command:
-      print(f"Final command: {' '.join(final_command)}")
+      if print_command:
+        print(f"Final command: {' '.join(final_command)}")
+      process = subprocess.Popen(' '.join(final_command), **kwargs)
     process.wait()
   finally:
     if params_file is not None and remove_params_file:

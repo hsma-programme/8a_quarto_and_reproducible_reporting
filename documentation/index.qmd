@@ -1,0 +1,124 @@
+---
+title: Session Instructions
+format:
+    html:
+        toc: true
+        toc-depth: 3
+        toc-expand: 3
+        embed-resources: true
+        code-links:
+        - text: Repository
+          icon: file-code
+          href: https://github.com/hsma-programme/8a_quarto_and_reproducible_reporting/
+---
+
+:::{.callout-warning}
+When you first open the repository in VSCode, you may be asked if you want to reopen the folder in a container.
+
+**Ignore this message and close the prompt.**
+
+![](assets/2024-09-20-13-33-15.png)
+
+The container is just provided for those who will need a web-based backup for running the exercises - more guidance will be given during the HSMA session.
+:::
+
+## Installing the environment
+
+1. Open the Anaconda Prompt
+
+2. Navigate to the folder you've stored the environment folder in using the `cd` (change directory) command.
+
+e.g.
+
+```
+cd C:\HSMA\h6_8a_quarto_and_reproducible_reporting\environment
+```
+
+3. Install the environment from the yml file
+
+```
+conda env create -f environment.yml
+```
+
+:::{.callout-tip collapse="true"}
+### Click here if you're having issues with installing the environment via Anaconda
+If you receive an error about exceeding the maximum number of retries or having a SSL error, try editing the environment.yml file to replace 'conda-forge' with 'defaults'.
+
+**Before**
+
+![](assets/2024-10-09-15-18-12.png)
+
+**After**
+
+![](assets/2024-10-09-15-18-27.png)
+
+Save the file and try again.
+
+If the environment has partially installed before reaching this failure point, it may tell you that you cannot install the environment due to the prefix already existing. If this is the case, run the following command:
+
+```
+conda env remove -n hsma_reproducible_reporting
+```
+
+Then you can rerun the `conda env create -f environment.yml` command.
+:::
+
+## Installing the Quarto Extension
+
+Head to the extensions tab in VSCode.
+
+![](assets/2024-10-09-15-21-28.png)
+
+Search for and install the Quarto extension by clicking on the install button.
+
+![](assets/2024-10-09-15-26-48.png)
+
+## Running a sample Quarto document
+
+### Selecting the hsma_reproducible_reporting environment
+
+First, we need to make sure we've selected the correct environment.
+
+To access the interpreter/environment select from any file within VSCode, click CTRL + SHIFT + P and choose 'Python: Select Interpreter' from the dropdown list that appears.
+
+You may need to start typing 'interpreter' to get it to show up.
+
+![](assets/2024-09-20-12-58-39.png)
+
+:::
+
+Select the **hsma_reproducible_reporting** environment from the list. Your list will contain different environments to the above.
+
+![](assets/2024-10-09-15-28-38.png)
+
+### Preview the 'hello_quarto.qmd' document
+
+Open up the document `hello_quarto.qmd` and click on the Quarto preview button (highlghted in orange on the image below).
+
+![](assets/2024-10-09-15-57-33.png)
+
+:::{.callout-tip}
+This button only appears when you are in a `.qmd` (Quarto markdown) file.
+
+If this has not appeared when you have opened the `hello_quarto.qmd` document, check that you have installed the Quarto extension (see above).
+:::
+
+If this runs successfully, it will open up a `Quarto Preview` terminal at the bottom of your screen and bring up a document, either within VSCode (the default in the Quarto extension) or in a new web browser window.
+
+![](assets/2024-10-09-16-13-37.png)
+
+## If you run into problems...
+
+### Troubleshooting
+
+If it is not successful, take a look at the error messages at the bottom of the screen. It may indicate some additional files that you need to install. Try to follow any instructions provided in the terminal.
+
+You can also try running the `quarto check` command in a terminal window in VSCode. This will run a series of basic checks relating to Quarto and its ability to see other things on your machine, like Python. Reading through the output of that may help to indicate any issues with the setup, and should give you an indication of any commands that may resolve issues you are having.
+
+![](assets/2024-10-09-16-16-31.png)
+
+### The backup option - GitHub Codespaces
+
+If you are not able to successfully run the above and if there are no obvious details provided, you will be able to use Gihub Codespaces on the day of the training; details will be provided on the day.
+
+This will provide you with an online machine running VSCode with Quarto, the hsma_reproducible_reporting environment and the Quarto extension already installed, as well as access to all of the files stored in the github repository for the session. Your experience should be almost identical to someone who is running VSCode on their local machine.

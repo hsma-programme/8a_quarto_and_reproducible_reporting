@@ -1,0 +1,89 @@
+---
+title: Embedded website example
+format:
+    html:
+        toc: true
+---
+
+## An embedding example
+
+In the example below, we embed a website directly in the Quarto document.
+
+:::{.callout-warning}
+Note that you will be unable to use the `embed-resources: true` option when embedding websites in this way.
+:::
+
+Here, we've embedded a HSMA site.
+
+```{=html}
+<iframe width="780" height="500" src="https://arc-swp.nihr.ac.uk/training-type/health-service-modelling-associates-programme-hsma/" title="Embedded Website"></iframe>
+```
+
+````
+```{{=html}}
+<iframe width="780" height="500" src="https://arc-swp.nihr.ac.uk/training-type/health-service-modelling-associates-programme-hsma/" title="Embedded Website"></iframe>
+```
+````
+
+You can adjust the size of the embedded website by changing the 'width' and 'height' parameters in the iframe.
+
+:::{.callout-tip}
+Note that unlike `{python}` or `{r}` code blocks in Quarto, we've included a `=` sign - i.e. `{=html}`
+
+This is necessary and not a typo!
+:::
+
+## Some websites don't work!
+
+Some websites will not work when embedded and will display as a blank space in the VSCode preview, and will display an error message when opened in a browser window.
+
+
+```{=html}
+<iframe width="780" height="500" src="https://sites.google.com/nihr.ac.uk/hsma/home" title="Embedded Website"></iframe>
+```
+
+````
+```{{=html}}
+<iframe width="780" height="500" src="https://sites.google.com/nihr.ac.uk/hsma/home" title="Embedded Website"></iframe>
+```
+````
+
+For example, here is the embedded website <https://sites.google.com/nihr.ac.uk/hsma/home> when opened in firefox.
+
+![](assets/2024-10-09-11-54-15.png)
+
+## Apps on Streamlit Community Cloud
+
+For Streamlit apps hosted on the community cloud, you will need to amend the web address slightly.
+
+For example, the app <https://hsma-7c-ex3-solution.streamlit.app/>
+
+would become <https://hsma-7c-ex3-solution.streamlit.app/?embed=true>
+
+```{=html}
+<iframe width="780" height="500" src="https://hsma-7c-ex3-solution.streamlit.app/?embed=true" title="Embedded Website"></iframe>
+```
+
+````
+```{{=html}}
+<iframe width="780" height="500" src="https://hsma-7c-ex3-solution.streamlit.app/?embed=true" title="Embedded Website"></iframe>
+```
+````
+
+You can read more about embedding Streamlit community cloud apps [here](https://docs.streamlit.io/deploy/streamlit-community-cloud/share-your-app/embed-your-app).
+
+## Stlite apps hosted on github pages
+
+st-lite apps hosted on Github pages can also be embedded. These do not need to be adjusted.
+
+Note that they will not work on Firefox - however, stlite apps will work on Chrome, Edge, Safari, and likely more.
+
+```{=html}
+<iframe width="780" height="500" src="https://hsma-programme.github.io/Teaching_DES_Concepts_Streamlit/" title="Embedded Website"></iframe>
+```
+
+````
+```{{=html}}
+<iframe width="780" height="500" src="https://hsma-programme.github.io/Teaching_DES_Concepts_Streamlit/" title="Embedded Website"></iframe>
+```
+````

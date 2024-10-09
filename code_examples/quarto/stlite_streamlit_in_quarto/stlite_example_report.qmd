@@ -1,14 +1,19 @@
 ---
 title: Example stlite report
+format:
+    html:
+        embed-resources: true
 filters:
   - whitphx/stlite
 ---
 
-Below, we have a real Streamlit app that runs entirely in the user's browser from within Streamlit.
+Below, we have a real Streamlit app that is executing in the user's browser!
 
-This can be one of the easiest ways to create and distribute a Streamlit app.
+This can be one of the easiest ways to create and distribute a Streamlit app, as well as to add interactivity into a Quarto document. st-lite apps are simpler to write that introducing interactivity by the `quarto-pyodide` or `quarto-live` extensions at the time of writing (October 2024).
 
-However - note that, unlike apps generally deployed with stlite on platforms like Github pages, the code for these embedded apps is sent externally to <https://share.stlite.net/> - so just consider what you are sharing.
+:::{.callout-important}
+However - note that, unlike apps generally deployed with stlite on platforms like Github pages, the code for these embedded apps is sent externally to <https://share.stlite.net/> - so just consider what you are sharing! This approach will not be appropriate for sensitive data.
+:::
 
 ```{stlite-python}
 import micropip
@@ -61,8 +66,8 @@ Note that you will still need to `import` the package after installing it.
 
 e.g.
 
-```{python}
-#| eval: false
+````
+```{stlite-python}
 import micropip
 await micropip.install("setuptools")
 await micropip.install("palmerpenguins")
@@ -89,6 +94,7 @@ fig = px.scatter(
 
 st.plotly_chart(fig)
 ```
+````
 
 :::{.callout-warning}
 If you forget the `await` keyword before `micropip.install()`, the package will fail to install.

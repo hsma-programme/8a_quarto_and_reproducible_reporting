@@ -129,6 +129,34 @@ You can also try running the `quarto check` command in a terminal window in VSCo
 
 ### The backup option - GitHub Codespaces
 
-If you are not able to successfully run the above and if there are no obvious details provided, you will be able to use Gihub Codespaces on the day of the training; details will be provided on the day.
+If you are not able to successfully run the above and if there are no obvious details provided, you will be able to use Gihub Codespaces on the day of the training.
 
 This will provide you with an online machine running VSCode with Quarto, the hsma_reproducible_reporting environment and the Quarto extension already installed, as well as access to all of the files stored in the github repository for the session. Your experience should be almost identical to someone who is running VSCode on their local machine.
+
+To initialize a new codespace on the repository, first make sure you are logged into a Github account.
+
+Then, from [the repository](https://github.com/hsma-programme/8a_quarto_and_reproducible_reporting), choose 'Use this template' --> 'Open in a codespace'.
+
+![](assets/2024-10-09-17-07-45.png)
+
+
+
+You will need to wait a few minutes while it loads. During this time, no files will be visible in the explorer bar.
+
+![](assets/2024-10-09-17-06-46.png)
+
+When it finishes loading, it will look something like this:
+
+![](assets/2024-10-09-17-10-39.png)
+
+You can then use this just like a local install of VSCode.
+
+All code examples have been tested on both Windows and Github Codespaces (which is running Linux behind the scenes).
+
+### Accessing your codespace again
+
+If you close down your codespace and wish to reopen it, including any changes you've made to files, you can return to [the repository](https://github.com/hsma-programme/8a_quarto_and_reproducible_reporting) and choose 'Code' --> 'Codespaces', and then click on the codespace name to access it again. The codespace name is randomly generated when you first set up the codespace.
+
+![](assets/2024-10-09-17-08-35.png)
+
+![](assets/2024-10-09-17-09-40.png)

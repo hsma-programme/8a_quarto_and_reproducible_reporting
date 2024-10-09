@@ -63,7 +63,17 @@ conda env remove -n hsma_reproducible_reporting
 Then you can rerun the `conda env create -f environment.yml` command.
 :::
 
-## Installing the Quarto Extension
+## Installing Quarto
+
+Your organisation should have already installed [Quarto](https://quarto.org/) as part of the initial set of software that was requested at the start of the programme.
+
+If you are using your own machine and have not yet installed it, you can install the Quarto CLI tool from this address: <https://quarto.org/docs/get-started/>
+
+Choose the relevant installer for your operating system.
+
+![](assets/2024-10-09-16-26-18.png)
+
+## Installing the Quarto Extension in VSCode
 
 Head to the extensions tab in VSCode.
 

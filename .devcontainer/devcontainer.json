@@ -18,7 +18,8 @@
                 "ms-python.python",
                 "ms-python.vscode-pylance",
 				"MS-vsliveshare.vsliveshare",
-				"ms-toolsai.jupyter"
+				"ms-toolsai.jupyter",
+				"grapecity.gc-excelviewer"
 			],
 			"settings": {
 				"r.rterm.option": [

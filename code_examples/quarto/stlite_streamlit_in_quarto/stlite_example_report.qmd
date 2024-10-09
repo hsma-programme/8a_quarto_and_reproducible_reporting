@@ -1,0 +1,101 @@
+---
+title: Example stlite report
+filters:
+  - whitphx/stlite
+---
+
+Below, we have a real Streamlit app that runs entirely in the user's browser from within Streamlit.
+
+This can be one of the easiest ways to create and distribute a Streamlit app.
+
+However - note that, unlike apps generally deployed with stlite on platforms like Github pages, the code for these embedded apps is sent externally to <https://share.stlite.net/> - so just consider what you are sharing.
+
+```{stlite-python}
+import micropip
+await micropip.install("setuptools")
+await micropip.install("palmerpenguins")
+await micropip.install("plotly")
+import streamlit as st
+from palmerpenguins import load_penguins
+import plotly.express as px
+
+penguins = load_penguins()
+
+axis_options = ['bill_length_mm', 'bill_depth_mm',
+       'flipper_length_mm']
+
+col_1 = st.selectbox(
+       "Select the column to use for the x axis", axis_options
+       )
+
+fig = px.scatter(
+       penguins,
+       x=col_1,
+       y='body_mass_g',
+       color='species',
+       title=f"Penguins Dataset - {col_1} vs Body Mass (g), coloured by Species")
+
+st.plotly_chart(fig)
+```
+
+If you want to use this extension in your own Quarto document, you will need to navigate to the folder where the .qmd file is stored, then run the command `quarto add whitphx/quarto-stlite`.
+
+Then, in the title block of your document, make sure to include
+
+```
+filters:
+  - whitphx/stlite
+```
+
+Finally, to include a Streamlit Quarto block, your code block needs to use the `{stlite-python}` header.
+
+(e.g. instead of \```{python}, you wil have \```{stlite-python})
+
+Note that stlite in this format only loads with a handful of packages. To add additional packages, you will need to
+
+`import micropip`
+
+and then `await micropip.install("your_package_name")`
+
+Note that you will still need to `import` the package after installing it.
+
+e.g.
+
+```{python}
+#| eval: false
+import micropip
+await micropip.install("setuptools")
+await micropip.install("palmerpenguins")
+await micropip.install("plotly")
+import streamlit as st
+from palmerpenguins import load_penguins
+import plotly.express as px
+
+penguins = load_penguins()
+
+axis_options = ['bill_length_mm', 'bill_depth_mm',
+       'flipper_length_mm']
+
+col_1 = st.selectbox(
+       "Select the column to use for the x axis", axis_options
+       )
+
+fig = px.scatter(
+       penguins,
+       x=col_1,
+       y='body_mass_g',
+       color='species',
+       title=f"Penguins Dataset - {col_1} vs Body Mass (g), coloured by Species")
+
+st.plotly_chart(fig)
+```
+
+:::{.callout-warning}
+If you forget the `await` keyword before `micropip.install()`, the package will fail to install.
+:::
+
+:::{.callout-warning}
+Not all packages are available to install via micropip - try out the package you are interested in and see if it works.
+
+This generally relates to whether a package has _wheels_ and whether all of its dependencies do as well. Certain packages will not, and unfortunately you will not be able to overcome this!
+:::

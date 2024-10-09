@@ -19,7 +19,8 @@
                 "ms-python.vscode-pylance",
 				"MS-vsliveshare.vsliveshare",
 				"ms-toolsai.jupyter",
-				"grapecity.gc-excelviewer"
+				"grapecity.gc-excelviewer",
+				"searking.preview-vscode"
 			],
 			"settings": {
 				"r.rterm.option": [
